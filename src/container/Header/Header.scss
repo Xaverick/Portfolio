@@ -91,8 +91,14 @@
       display: flex;
       gap: 2rem;
       padding: 1rem 0;
-     
+      @media screen and (max-width: 500px) {
+        gap: 1rem;
+      }
+      
       .cta-button {
+        @media screen and (max-width: 500px) {
+          font-size: 14px;
+        }
         padding: 1rem;
         border-radius: 10px;        
         background-color: var(--secondary-color);
