@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react'
 import {motion} from 'framer-motion'
 import {images} from "../../constants"
-import {AppWrap, MotionWrap} from "../../wrapper"
+
 import "./Skills.scss"
 import { Tooltip as ReactToolTip } from 'react-tooltip'
-
+import {AppWrap, MotionWrap} from "../../Wrapper"
 
 const experienceData = [
   {

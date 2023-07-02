@@ -27,7 +27,7 @@ import profile from '../assets/profile.png';
 import circle from '../assets/circle.svg';
 import logo from '../assets/logo.png';
 import bootstrap from '../assets/bootstrap.png';
-import test3 from '../assets/test3.png';
+
 
 import kadevstore1 from '../assets/kadevstore1.png';
 import kadevstore2 from '../assets/kadevstore2.png';
@@ -49,7 +49,6 @@ import portfolio2 from '../assets/portfolio2.png';
 import portfolio3 from '../assets/portfolio3.png';
 
 export default {
-  test3,
   bootstrap,
   person1,
   mongodb,

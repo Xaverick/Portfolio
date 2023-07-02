@@ -57,7 +57,27 @@ const Work = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [imageCurrentIndex, setImageCurrentIndex] = useState(0)
 
+  const [position, setPosition] = useState(0);
+  const [startX, setStartX] = useState(0);
 
+
+
+  const handleTouchStart = (e) => {
+    setStartX(e.touches[0].clientX);
+  };
+  
+  const handleTouchMove = (e) => {
+    const currentX = e.touches[0].clientX;
+    const diff = startX - currentX;
+    setPosition(-diff);
+  };
+  
+  const handleTouchEnd = () => {
+    setImageCurrentIndex(0);
+    currentIndex === filterWork.length - 1 ? setCurrentIndex(0) : setCurrentIndex(currentIndex + 1)
+
+
+  };
 
   useEffect(() => {
     setWorks(data)
@@ -68,11 +88,13 @@ const Work = () => {
   const handleClick = () =>{
     setImageCurrentIndex(0);
     currentIndex === 0 ? setCurrentIndex(filterWork.length - 1) : setCurrentIndex(currentIndex - 1)
+
   }
 
   const handleClickAfter = () =>{
     setImageCurrentIndex(0);
     currentIndex === filterWork.length - 1 ? setCurrentIndex(0) : setCurrentIndex(currentIndex + 1)
+
   }
 
 
@@ -86,6 +108,7 @@ const Work = () => {
 
     setCurrentIndex(0);
     setImageCurrentIndex(0)
+    setActive(currentIndex);
     if(item === 'All') return setFilterWork(works)
     else return setFilterWork(works.filter(work => work.tags[0] === item))
 
@@ -125,7 +148,12 @@ const Work = () => {
         <motion.div
           animate={animateCard}
           transition={{duration: 0.5, delayChildren: 0.5}}
-          className='app__work-portfolio'
+          className='app__work-portfolio swipe-container'
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+          style={{ transform: `translateX(${position}px)` }}
+
         >
           {filterWork.length && (            
             <div className='app__work-item  app__flex'>             
@@ -141,7 +169,8 @@ const Work = () => {
                 <motion.div
                   whileHover={{ opacity: [0, 1] }}
                   transition={{ duration: 0.25, ease: 'easeInOut', staggerChildren: 0.5 }}
-                  className="app__work-hover app__flex"
+                  className="app__work-hover app__flex "
+          
                 >
 
 
@@ -215,28 +244,12 @@ const Work = () => {
             
            )} 
 
-          <div className='app__work-mobileNav'>
-            <div className='app__work-mobileNav-left'>
-                <div className='icon'
-                  onClick={handleClick}
-                > 
-                  <ArrowBackIosIcon />
-                </div>
-                
-            </div>
+ 
 
-            <div className='icon'
-              onClick={handleClickAfter}
-            >
 
-              <ArrowForwardIosIcon />
-              
-            </div>
-
-          </div>
 
         </motion.div> 
-
+        
 
         <div className='app__work-portfolioArea-right'>
           <div className='icon'
@@ -248,8 +261,22 @@ const Work = () => {
           
 
         </div>
-       </div>
-   
+      </div>
+
+
+      <div className='app__work-indicator app__flex'>
+          {filterWork.map((work,index) => (
+            <div className='app__work-indiviual-indicator ' 
+                  key={index} 
+                  style={currentIndex ===  index ? { backgroundColor: '#313BAC' } : {}}
+            >
+              
+            </div>
+
+          ))}
+
+
+      </div>  
     
     </>
   )

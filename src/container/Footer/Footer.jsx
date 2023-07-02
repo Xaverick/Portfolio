@@ -3,7 +3,7 @@ import {AppWrap, MotionWrap} from '../../Wrapper'
 import {images} from '../../constants'
 import './Footer.scss'
 import emailjs from '@emailjs/browser';
-
+import { BsGithub,BsLinkedin, BsTwitter, BsInstagram } from 'react-icons/bs';
 
 const Footer = () => {
 
@@ -19,7 +19,13 @@ const Footer = () => {
     setFormData({...formData, [name]: value})
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    
+    if(!name || !email || !message) return alert('Please fill all the fields')
+    if(!email.includes('@') || !email.includes('.')) return alert('Please enter a valid email')
+
+
+    e.preventDefault();
     setLoading(true);
     const templateParams = {to_name: 'Karik' ,email: formData.email, name: formData.name, message: formData.message}
     emailjs.send('service_4k9ni0f', 'template_soiohgb', templateParams, "LNGi34JDf0aNCozp9")
@@ -60,31 +66,59 @@ const Footer = () => {
       
       
         : 
+        <form  className='app__footer-form app__flex'>       
+            <div className='app__flex'>
+              <input type="text" placeholder="Your Name" name = 'name' className='p-text' value= {name} onChange={handleChangeInput} required/>
+            </div>
 
-        <div className='app__footer-form app__flex'>
-          <div className='app__flex'>
-            <input type="text" placeholder="Your Name" name = 'name' className='p-text' value= {name} onChange={handleChangeInput} />
-          </div>
+            <div className='app__flex'>
+              <input type="email" placeholder="Your Email" name = "email" className='p-text' value= {email} onChange={handleChangeInput} required/>
+            </div>
 
-          <div className='app__flex'>
-            <input type="email" placeholder="Your Email" name = "email" className='p-text' value= {email} onChange={handleChangeInput} />
-          </div>
+            <div className='app__flex'>
+              <textarea
+                className='p-text'
+                placeholder="Your Message"  
+                value= {message}
+                name = "message"
+                onChange={handleChangeInput} 
+                required
+              />
+            </div> 
 
-          <div className='app__flex'>
-            <textarea
-              className='p-text'
-              placeholder="Your Message"  
-              value= {message}
-              name = "message"
-              onChange={handleChangeInput} 
-            />
-          </div> 
-
-          <button type='button' className='p-text' onClick={handleSubmit}>{loading ? 'Sending' : 'Send Message'}</button>
-
-        </div> 
+            <button type='button' className='p-text' onClick={handleSubmit}>{loading ? 'Sending' : 'Send Message'}</button>
+        </form>
  
       }
+
+      <footer className="footer">
+        <div className="container">
+          <h3>Social</h3>
+          <div className="app__footer-social">
+            <a target="_blank" rel="noreferrer">
+              <BsTwitter />
+            </a>
+            <a href='https://github.com/Xaverick' target="_blank" rel="noreferrer">
+              <BsGithub />
+            </a>
+            <a href='https://www.linkedin.com/in/kartik-aggarwal-951a6a194/' target="_blank" rel="noreferrer">
+              <BsLinkedin />
+            </a>
+            <a href = 'https://www.instagram.com/kartiks.18/' target="_blank" rel="noreferrer">
+              <BsInstagram />
+            </a>
+          </div>
+          <h3>
+            Kartik Aggarwal
+          </h3>
+          <p className='footer-text'>Turning visions into reality, one pixel at a time.</p>
+
+          <div className='line'>
+
+          </div>
+          <p className="footer-text">© 2023 Kartik Aggarwal. All rights reserved.</p>
+        </div>
+      </footer>
     
     </>
   )
