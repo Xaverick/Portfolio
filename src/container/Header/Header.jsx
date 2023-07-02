@@ -4,6 +4,8 @@ import {AppWrap} from '../../Wrapper'
 import  {motion} from "framer-motion"
 import {images} from "../../constants"
 import Typewriter from "typewriter-effect";
+import cv from "../../assets/cv.pdf"
+
 
 const scalevarients = {
   whileInView: {
@@ -61,8 +63,13 @@ const Header = () => {
 
 
             <div className='header-buttons'>
-              <a href="#portfolio" className="cta-button">Download CV</a>
-              <a href="#portfolio" className="cta-button">Contact Me</a>
+              <a href={cv}
+                download="Kartik-Aggarwal-Resume"
+                target="_blank"
+                rel="noreferrer"              
+                className="cta-button">
+                Download CV</a>
+              <a href="#contact" className="cta-button">Contact Me</a>
             </div>
        
           </header>

@@ -108,7 +108,7 @@ const Work = () => {
 
     setCurrentIndex(0);
     setImageCurrentIndex(0)
-    setActive(currentIndex);
+ 
     if(item === 'All') return setFilterWork(works)
     else return setFilterWork(works.filter(work => work.tags[0] === item))
 
@@ -148,10 +148,7 @@ const Work = () => {
         <motion.div
           animate={animateCard}
           transition={{duration: 0.5, delayChildren: 0.5}}
-          className='app__work-portfolio swipe-container'
-          onTouchStart={handleTouchStart}
-          onTouchMove={handleTouchMove}
-          onTouchEnd={handleTouchEnd}
+          className='app__work-portfolio'
           style={{ transform: `translateX(${position}px)` }}
 
         >
@@ -261,7 +258,31 @@ const Work = () => {
           
 
         </div>
+
+        <div className='app__work-mobileNav'>
+
+
+          <div className='app__work-mobileNav-left'>
+            <div className='icon'
+              onClick={handleClick}
+            > 
+              <ArrowBackIosIcon />
+            </div>
+          </div>            
+
+          <div className='icon'
+            onClick={handleClickAfter}
+          >
+              
+            <ArrowForwardIosIcon />
+          </div>
+
+        </div>
+
       </div>
+
+
+ 
 
 
       <div className='app__work-indicator app__flex'>
