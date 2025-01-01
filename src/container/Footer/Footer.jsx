@@ -28,7 +28,7 @@ const Footer = () => {
     e.preventDefault();
     setLoading(true);
     const templateParams = {to_name: 'Karik' ,email: formData.email, name: formData.name, message: formData.message}
-    emailjs.send('service_4k9ni0f', 'template_soiohgb', templateParams, "LNGi34JDf0aNCozp9")
+    emailjs.send('gfdg', 'fgdf', templateParams, "dfgdf")
     .then(function(response) {
         setIsFrormSubmitted(true);
        console.log('SUCCESS!', response.status, response.text);
